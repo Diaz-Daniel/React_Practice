@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-const CountButton = () => {
+const CountButton = (props) => {
   const [currentCount, setCurrentCount] = useState(0);
 
   const handleClick = () => {
-    setCurrentCount(currentCount + 1);
+    setCurrentCount(currentCount + props.incrementBy);
   };
   return (
     <div>
-      <button onClick={handleClick}>+1</button>
+      <button onClick={handleClick}>+{props.incrementBy}</button>
       <div>{currentCount}</div>
     </div>
   );
