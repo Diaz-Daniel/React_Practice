@@ -15,7 +15,7 @@ const CountButton = (props) => {
       <button style={buttonStyles} onClick={handleClick}>
         +{props.incrementBy}
       </button>
-      <div className={"count-display"}>{currentCount}</div>
+      <div className="count-display">{currentCount}</div>
     </div>
   );
 };
