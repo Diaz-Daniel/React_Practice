@@ -7,24 +7,24 @@ const App = () => {
   const [productsState, setProductsState] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setProductsState([
-        "tooth paste",
-        "tooth brush",
-        "mouthwash",
-        "dental floss",
-        "mouth guard",
-      ]);
-    }, 2000);
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((productsArray) => {
+        const newProductsState = productsArray.map((product) => {
+          return product.title;
+        });
+        setProductsState(newProductsState);
+      });
   }, []);
+
+  const hasProducts = productsState.length > 0;
 
   return (
     <div>
       <CountButton incrementBy={3} buttonColor={"blue"} />
       {/* <CountButton incrementBy={1} buttonColor={"blue"} />
       <CountButton incrementBy={5} buttonColor={"green"} /> */}
-
-      <SearchBar products={productsState} />
+      {hasProducts ? <SearchBar products={productsState} /> : "loading..."}
     </div>
   );
 };
